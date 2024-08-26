@@ -12,9 +12,9 @@ spec:
             claimName: datalake-storage-claim
       containers:
       - name: ndnk8s-dataloader
-        image: sankalpatimilsina/dataloader:latest
+        image: sankalpatimilsina/dataloader:fastq
         command: ["/bin/bash"]
-        args: ["-c", "/main.sh /rice.txt /kidney.txt"] 
+        args: ["-c", "/main.sh /fastq.txt"] 
         imagePullPolicy: Always
         volumeMounts:
           - mountPath: /fileserver_data

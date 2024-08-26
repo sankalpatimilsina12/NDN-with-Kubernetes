@@ -36,7 +36,7 @@ for deployment in "${deployments[@]}"; do
 done
 
 # Wait for NFD to be ready
-sleep 5
+sleep 10 
 
 # Register prefixes on gateway deployment
 POD_NAME=$(microk8s kubectl get pods -n ndnk8s -l app=gw --no-headers -o custom-columns=":metadata.name")

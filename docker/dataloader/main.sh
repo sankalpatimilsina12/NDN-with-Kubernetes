@@ -1,15 +1,15 @@
 : '
 This script is responsible for following tasks:
-1. Loading sample SRAs from NCBI
+1. Loading sample Fastq files
 2. Loading human genome reference and building reference database for BLAST 
 '
 
 #!/bin/bash
 
-echo "Loading sample SRAs from NCBI..."
-source ./samples.sh "$@"
+echo "Loading sample Fastq files..."
+source ./samples_fastq.sh "$@"
 
 echo "Loading human genome reference and building reference database for BLAST..."
 source ./db.sh
 
-echo "Loaded sample SRAs from NCBI and human genome reference..."
+echo "Loaded sample Fastq files and human genome reference..."

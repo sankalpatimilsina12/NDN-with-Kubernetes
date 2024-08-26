@@ -7,7 +7,7 @@ FROM ubuntu:20.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-COPY --from=edirect /usr/local/ncbi/edirect /usr/local/ncbi/edirect
+COPY --from=edirect /home/docker/edirect /usr/local/ncbi/edirect
 COPY --from=sra-tools /usr/local/bin /usr/local/bin
 COPY --from=sra-tools /lib /lib
 COPY --from=blast /blast/bin /blast/bin
@@ -17,14 +17,16 @@ ENV PATH="/blast/bin:/usr/local/ncbi/edirect:${PATH}"
 ENV LD_LIBRARY_PATH="/blast/lib:${LD_LIBRARY_PATH}"
 
 RUN apt-get -y -qq update
-RUN apt-get -y -qq --no-install-recommends install bash libxml2-utils perl libio-socket-ssl-perl libhtml-parser-perl libwww-perl libxml-simple-perl curl gzip make libgomp1 liblmdb0 cpanminus && \
+RUN apt-get -y -qq --no-install-recommends install bash libxml2-utils perl libio-socket-ssl-perl libhtml-parser-perl libwww-perl libxml-simple-perl curl wget gzip make libgomp1 liblmdb0 cpanminus && \
     cpanm LWP::Protocol::https && \
     rm -rf /var/lib/apt/lists/* /root/.cpanm/*
 
 COPY main.sh /main.sh
 COPY samples.sh /samples.sh
+COPY samples_fastq.sh /samples_fastq.sh
 COPY db.sh /db.sh
 COPY rice.txt /rice.txt
 COPY kidney.txt /kidney.txt
+COPY fastq.txt /fastq.txt
 
-RUN chmod +x /main.sh /samples.sh /db.sh
+RUN chmod +x /main.sh /samples.sh /samples_fastq.sh /db.sh
