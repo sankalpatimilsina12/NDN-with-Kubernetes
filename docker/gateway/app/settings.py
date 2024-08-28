@@ -4,8 +4,8 @@ import logging
 DEBUG = True
 
 SUPPORTED_APP_PARAMS = {
-    'mem': '4Gi',
-    'cpu': 2
+    'mem': '8Gi',
+    'cpu': 6
 }
 
 SUPPORTED_APPS = {
